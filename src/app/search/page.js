@@ -1,13 +1,13 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Navbar from '../components/Navbar';
 import MangaCard from '../components/MangaCard';
 import { searchManga } from '../services/api';
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
   const [currentSource, setCurrentSource] = useState('comick');
@@ -90,5 +90,20 @@ export default function SearchPage() {
         )}
       </div>
     </main>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-b from-[var(--space-cadet)] to-[var(--ultra-violet)] grid place-items-center">
+        <div className="text-center">
+          <div className="animate-spin w-16 h-16 border-4 border-[var(--tropical-indigo)] border-t-transparent rounded-full mb-6 mx-auto"></div>
+          <p className="text-xl font-medium text-gray-200">Loading search page...</p>
+        </div>
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   );
 }
