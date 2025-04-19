@@ -1,0 +1,266 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tropical-indigo: #9090ff;
+  --slate-blue: #6161ce;
+  --ultra-violet: #47477e;
+  --space-cadet: #262644;
+  --risd-blue: #5959ff;
+  
+  --background: var(--space-cadet);
+  --foreground: #f8f9fa;
+  --primary: var(--tropical-indigo);
+  --secondary: var(--slate-blue);
+  --accent: var(--risd-blue);
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
+    background-image: linear-gradient(
+      to bottom,
+      var(--space-cadet),
+      #222240
+    );
+    font-feature-settings: "liga" 1, "kern" 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1 {
+    @apply font-bold tracking-tight text-2xl md:text-3xl leading-tight;
+    letter-spacing: -0.02em;
+  }
+  
+  h2 {
+    @apply font-bold tracking-tight text-xl md:text-2xl leading-tight;
+    letter-spacing: -0.01em;
+  }
+  
+  h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight leading-tight;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  a {
+    @apply transition-colors hover:text-[var(--tropical-indigo)];
+  }
+}
+
+.container {
+  @apply max-w-[1200px] mx-auto px-4 md:px-6;
+}
+
+/* Minimalistic search bar */
+.search-bar {
+  @apply w-full px-4 py-2.5 bg-[var(--ultra-violet)] bg-opacity-20 border border-[var(--slate-blue)] border-opacity-30 rounded-md text-white;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.search-bar:focus {
+  @apply outline-none border-[var(--tropical-indigo)] bg-opacity-30;
+  box-shadow: 0 0 0 2px rgba(144, 144, 255, 0.2);
+}
+
+/* Simplified card styling */
+.card {
+  @apply bg-[var(--ultra-violet)] bg-opacity-30 rounded-md overflow-hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Minimalistic scrollable containers */
+.scrollable-container {
+  @apply scroll-smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--slate-blue) transparent;
+}
+
+.scrollable-container::-webkit-scrollbar {
+  @apply h-1.5;
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+  @apply rounded-full bg-transparent;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-[var(--slate-blue)] opacity-40 hover:opacity-70;
+  transition: opacity 0.2s ease;
+}
+
+/* Minimalistic dropdown menu */
+.dropdown-menu {
+  @apply bg-[var(--space-cadet)] border border-[var(--slate-blue)] border-opacity-20 rounded-md overflow-hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  animation: dropdownFadeIn 0.15s ease;
+  backdrop-filter: blur(8px);
+}
+
+.dropdown-item {
+  @apply px-3 py-2 hover:bg-[var(--ultra-violet)] hover:bg-opacity-50 cursor-pointer transition-colors;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Simplified button styling */
+.btn {
+  @apply px-4 py-2 rounded-md font-medium transition-all text-sm;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary {
+  @apply bg-[var(--tropical-indigo)] text-white hover:bg-[var(--risd-blue)];
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  @apply bg-[var(--ultra-violet)] text-white hover:bg-[var(--slate-blue)];
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s cubic-bezier(0.17, 0.67, 0.33, 0.99) forwards;
+  opacity: 0;
+}
+
+/* Enhanced glassmorphism effects */
+.glass-panel {
+  @apply bg-[var(--ultra-violet)] bg-opacity-30 border border-white/10 rounded-xl;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced Search Results Background */
+.search-results-bg {
+  background: linear-gradient(135deg, var(--space-cadet) 0%, var(--ultra-violet) 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Header section styling */
+.header-section {
+  @apply mb-8 p-6 rounded-xl; 
+  background: linear-gradient(to right, var(--ultra-violet), var(--space-cadet));
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.header-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 40%, rgba(144, 144, 255, 0.1), transparent 60%);
+  z-index: 0;
+}
+
+.header-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Minimalistic manga card styling */
+.manga-card {
+  @apply relative overflow-hidden rounded-md transition-all duration-200;
+  height: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.manga-card img {
+  @apply object-cover w-full h-full transition-transform duration-300;
+}
+
+.manga-card:hover img {
+  transform: scale(1.03);
+}
+
+.manga-card-overlay {
+  @apply absolute bottom-0 left-0 right-0 p-2.5 bg-gradient-to-t from-black/80 to-transparent;
+  transition: opacity 0.2s ease;
+}
+
+.manga-card-title {
+  @apply text-base font-medium text-white line-clamp-2 leading-snug;
+  letter-spacing: -0.01em;
+}
+
+/* Simplified manga rows */
+.manga-row {
+  @apply py-5;
+}
+
+.manga-row-title {
+  @apply text-lg font-semibold mb-3 text-white;
+  letter-spacing: -0.01em;
+}
+
+/* Simplified thumbnails */
+.thumbnail-container {
+  @apply relative overflow-hidden rounded-md shadow-md;
+  aspect-ratio: 2/3;
+}
+
+/* Minimalistic status badges */
+.status-badge {
+  @apply absolute top-2 right-2 px-1.5 py-0.5 text-xs font-medium rounded tracking-wide;
+  font-feature-settings: "tnum" on, "lnum" on;
+}
+
+.status-ongoing {
+  @apply bg-green-500/70 text-white;
+  backdrop-filter: blur(2px);
+}
+
+.status-completed {
+  @apply bg-blue-500/70 text-white;
+  backdrop-filter: blur(2px);
+}
